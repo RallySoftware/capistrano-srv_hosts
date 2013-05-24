@@ -24,7 +24,15 @@ Create appropriate DNS records, e.g.:
     _service._tcp.example.com 3600 IN SRV 10 1000 0 server01.example.com
     _service._tcp.example.com 3600 IN SRV 20 1000 0 server02.example.com
 
-In your config/deploy.rb you can now define roles like this:
+Configure your config/deploy.rb:
+
+At the top add:
+
+```ruby
+require 'capistrano/srv_hosts'
+```
+
+Then you can define roles like this:
 
 ```ruby
 srv_role :app, '_service._tcp.example.com'
