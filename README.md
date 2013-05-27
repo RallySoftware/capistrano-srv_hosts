@@ -56,5 +56,5 @@ role :db, srv_hosts('_service._tcp.example.com').first, :primary => true
 ## Copyright
 
 © Rally Software Development Corp. Released under MIT license, see
-[LICENSE](https://github.com/RallySoftware/openid-store-redis/blob/master/LICENSE.txt)
+[LICENSE](https://github.com/RallySoftware/capistrano-srv_hosts/blob/master/LICENSE.TXT)
 for details.
