@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'capistrano/srv_hosts'
 
-describe Capistrano::SRVHosts do
+describe Capistrano::SrvHosts do
   before(:all) do
     @test_data = [
       srv_record(15, 1000, 0, 'server04.example.com'),
@@ -13,7 +13,7 @@ describe Capistrano::SRVHosts do
 
   before(:each) do 
     @configuration = Capistrano::Configuration.new
-    Capistrano::SRVHosts.load_into(@configuration)
+    Capistrano::SrvHosts.load_into(@configuration)
   end
 
   it 'should load instance methods into Capistrano' do
