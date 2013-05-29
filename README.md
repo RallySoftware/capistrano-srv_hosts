@@ -1,4 +1,4 @@
-# Capistrano::SRVHosts [![Build Status](https://travis-ci.org/RallySoftware/capistrano-srv_hosts.png)](https://travis-ci.org/RallySoftware/capistrano-srv_hosts)
+# Capistrano::SrvHosts [![Build Status](https://travis-ci.org/RallySoftware/capistrano-srv_hosts.png)](https://travis-ci.org/RallySoftware/capistrano-srv_hosts)
 
 Capistrano extension to fetch deploy hosts via DNS SRV records.
 
@@ -6,7 +6,7 @@ Capistrano extension to fetch deploy hosts via DNS SRV records.
 
 Add this line to your application's Gemfile:
 
-    gem 'capistrano-srv-hosts'
+    gem 'capistrano-srv_hosts'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself:
 
-    $ gem install capistrano-srv-hosts
+    $ gem install capistrano-srv_hosts
 
 ## Usage
 
