@@ -2,7 +2,7 @@ require 'capistrano'
 require 'resolv'
 
 module Capistrano::SrvHosts
-  module InstanceMethods
+  module DSL
     def srv_hosts(srv_record)
       @srv_hosts ||= {}
       @srv_hosts[srv_record] ||= Resolv::DNS.open do |dns|
@@ -10,19 +10,11 @@ module Capistrano::SrvHosts
       end
       @srv_hosts[srv_record].dup
     end
-    
+
     def srv_role(new_role, srv_record, *params)
-      role new_role, *srv_hosts(srv_record), *params
-    end
-  end
-
-  def self.load_into(configuration)
-    configuration.load do
-      extend InstanceMethods 
+      role new_role, srv_hosts(srv_record), *params
     end
   end
 end
 
-if Capistrano::Configuration.instance
-  Capistrano::SrvHosts.load_into(Capistrano::Configuration.instance(:must_exist))
-end
+self.extend Capistrano::SrvHosts::DSL
