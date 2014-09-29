@@ -19,17 +19,24 @@ describe Capistrano::SrvHosts do
   end
 
   describe '#srv_hosts' do
-    it 'should query DNS and cache results' do
+    before :each do
       Resolv::DNS.any_instance.should_receive(:getresources).with('_test._tcp.example.com', Resolv::DNS::Resource::IN::SRV).exactly(1).times.and_return(@test_data)
+    end
+
+    it 'should query DNS and cache results' do
       dsl.srv_hosts('_test._tcp.example.com')
       dsl.srv_hosts('_test._tcp.example.com')
     end
 
     it 'should sort the results properly' do
-      Resolv::DNS.any_instance.should_receive(:getresources).with('_test._tcp.example.com', Resolv::DNS::Resource::IN::SRV).exactly(1).times.and_return(@test_data)
       res = dsl.srv_hosts('_test._tcp.example.com')
       res.size.should eq(4)
       res.should eq(['server02.example.com', 'server03.example.com', 'server01.example.com', 'server04.example.com'])
+    end
+
+    it 'should set user parameter to host' do
+      res = dsl.srv_hosts('_test._tcp.example.com', user: "testuser")
+      res.should include('testuser@server02.example.com')
     end
   end
 
